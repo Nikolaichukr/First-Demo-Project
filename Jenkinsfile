@@ -7,7 +7,7 @@ pipeline {
                     echo "Building docker image..."
                     echo "BUILD_NUMBER=${BUILD_NUMBER}" > .env
                     docker build -t demo-project:latest .
-                    docker rm $(docker ps -aq)
+                    docker rm $(docker ps -aq) 2>/dev/null
                     docker images -f "dangling=true" -q | xargs -r docker rmi --force
                     '''
             }
