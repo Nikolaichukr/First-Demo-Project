@@ -21,5 +21,3 @@ The CI/CD pipeline consists of the following stages:
 6. **Docker Container Deployment:** The Docker container is started and served via nginx.
 
     ![](diagram.png)
-
-test
