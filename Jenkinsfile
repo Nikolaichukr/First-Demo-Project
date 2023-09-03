@@ -42,7 +42,7 @@ pipeline {
                             ssh -oStrictHostKeyChecking=no -i ${SSH_KEY} ${USER}@${IP} """
                                     aws ecr get-login-password --region ${REGION} | docker login --username AWS --password-stdin ${AWS_ECR_STRING}
                                     docker pull ${AWS_ECR_STRING}/demo-project:latest
-                                    docker stop demoproject 2>/dev/null
+                                    docker stop demoproject 2>/dev/null || true
                                     docker run -d --rm --name demoproject -p 5000:5000 ${AWS_ECR_STRING}/demo-project:latest
                                     docker images --filter "dangling=true" --quiet | xargs -r docker rmi
                                 """
